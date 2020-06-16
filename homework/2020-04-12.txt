@@ -1,0 +1,4 @@
+作业：
+1.安装IDEA
+2.安装Tomcat
+3.安装Navicat

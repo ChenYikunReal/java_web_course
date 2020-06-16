@@ -1,0 +1,64 @@
+1、jsp内置对象
+在jsp页面的脚本元素中使用的
+特点：是由服务器（web容器）创建 管理的一组对象。
+九个内对象名--类型--功能--常用的方法
+
+exception
+ jsp页面产生异常时，能跳转到错误页面。
+错误页面中设置 page指令的isErrorPage="true" 
+  可以使用exception对象
+其他页面中设置page指令的errorPage="错误页面路径"
+
+2、jsp指令元素--include
+作用：引入页面。可以将页面中共性内容提取到一个jsp页面，其他页面对这个jsp进行引入。
+语法：
+<%@include file="引入页面的路径"%>
+特点：
+  include指令--静态的引入--在翻译阶段实现的引入--当前页面和被引入的页面会生成一个.java文件。
+
+三 动作元素
+1、jsp:include 引入页面 --动态包含
+<jsp:include page="footer.jsp">
+  <jsp:param name="" value=""></jsp:param>
+</jsp:include>
+特点：
+  动作元素--动态的引入--在运行阶段实现的引入--当前页面和被引入的页面都会生成一个.java文件（2个）
+  可以实现传值
+2  jsp:forward 请求转发页面跳转
+<jsp:forward page="test2.jsp">
+    <jsp:param name="info" value="aaa"></jsp:param>  传参
+</jsp:forward>
+3、jsp:param 传参
+
+四 EL表达式
+jsp页面中使用
+作用：从作用范围中取值
+语法：${key}
+
+从作用范围取值为String int double
+  ${key}
+取对象
+  ${key.属性名}
+  ${users.nickName}  ==  ${users["nickName"]}
+ 
+也可以指定范围取值,如果不指定范围默认会从小范围到大范围查找，找了就显示
+ ${requestScope.uage}
+
+五 会员的修改信息 根据主键实现修改
+列表页点击修改链接传递主键--Servlet（获取主键 dao selectById request存值 跳转）--修改页面 显示这个用户的默认信息
+--Servlet（获取用户数据--dao update 跳转）--页面
+
+根据主键查询
+  列表页点击查看链接传递主键--Servlet（获取主键 dao selectById request存值 跳转）--页面 显示内容
+根据主键删除
+  列表页点击删除链接传递主键--Servlet(获取主键 dao delete 跳转)--页面
+
+作业：
+1 完成users表的根据主键修改功能 
+2 完成users表的根据主键删除功能
+3 扩展 如何设置欢迎页面（启动服务器后 默认显示的第一个页面）
+ web.xml配置
+
+
+
+

@@ -1,0 +1,7 @@
+1、创建一个jsp页面a.jsp，在这个jsp页面中往session范围中存入一个字符串，
+往request范围中存入一个用户类型的对象，
+跳转到b.jsp中，使用el表达式显示出字符串和用户信息。
+2、创建head.jsp和footer.jsp 里面设置公共内容，
+在a.jsp中和b.jsp中使用include指令元素实现引入。
+
+提交：4个jsp页面--压缩包

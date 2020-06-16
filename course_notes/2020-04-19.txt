@@ -1,0 +1,59 @@
+1、什么是Servlet？
+  是依照javaee规范所书写的运行在应用程序服务器中，能够处理用户的http请求，http响应的一个java类。
+
+2、Servlet Api
+Servlet接口 ServletConfig接口
+Servlet、ServletConfig的实现类 GenericServlet
+GenericServlet的子类 HttpServlet
+
+ServletRequest接口--子接口 HttpServletRequest
+ServletResponse接口--子接口HttpServletResponse
+
+3、创建出一个Servlet类
+ a 创建出自定义类继承HttpServlet
+ b 重写doGet doPost方法
+ c servlet2.5 web.xml中对Servlet进行路径的配置
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name> 逻辑名
+        <servlet-class>test0419.ctrl.HelloServlet</servlet-class> Servlet类的包名.类名
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name> 逻辑名
+        <url-pattern>/hello</url-pattern>  配置路径，一般/开头表示项目根目录下 ，/前面代表项目名
+    </servlet-mapping>
+课堂练习：
+1、创建一个html页面，访问这个页面
+2、创建一个Servlet类，设置路径，访问servlet类，
+修改路径，再次访问。
+
+登陆流程
+login.html--处理登陆的Servlet（获取用户录入的数据，jdbc dao，跳转）--主页或错误页面
+
+4、get请求与post请求
+ get请求 用户在地址栏输入url访问、点击超链接标签、form中设置method为get。
+  用户录入的数据可以在地址栏中看到，不安全，不能直接支持传递中文，传递字符限制255个。
+ post请求 form中设置method是post时。
+  用户录入的数据在地址栏看不到，安全的。可以支持传递中文，没有传递字符的限制。
+对比：如果表单中有用户的隐私数据（如密码）要使用post请求。
+
+5 HttpServletRequest对象的常用方法
+  a、根据请求参数名获取值
+   String str=request.getParameter("参数值");
+  b、设置请求的字符编码  （表单post请求方式提交时 允许用户录入中文时）
+  request.setCharacterEncoding("utf-8");
+
+6 HttpServletResponse对象的常用方法
+  a、重定向方式实现页面跳转
+   response.sendRedirect("页面路径");
+
+作业：
+1、安装mysql数据库，安装navicat工具，创建一个数据库，创建数据库表 users，
+字段 userid password username tel，添加三条测试数据。
+2、使用servlet实现用户的登陆功能
+  a、不连接数据库
+  b、jdbc--链接数据库实现登陆  users表 Users  UsersDao（selectById或checkLogin）
+3、自学html
+
+
+
+

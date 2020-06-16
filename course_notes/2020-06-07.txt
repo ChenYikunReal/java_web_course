@@ -1,0 +1,63 @@
+一 taglib指令元素
+作用：在页面中引入标签库
+语法：
+ <%@taglib uri="" prefix="前缀" %>
+
+二 jstl标签库
+使用步骤：
+1、项目中导入jar包
+2、哪个页面想使用标签库，哪个页面就使用taglib引入标签库
+
+往指定的作用范围中存值
+    <c:set scope="session" var="info" value="hello"></c:set>
+从作用范围中获取值 输出，如果没获取到值，打印default的值
+    <c:out value="${info}" default="wu"/>
+从作用范围中移除值
+    <c:remove var="info" scope="session"/>
+条件判断
+ 如果test条件是true，将c:if中信息显示出来
+<c:if test="${}"></c:if>
+多分支结构
+<c:choose>
+<c:when test="${}"></c:when>
+<c:when test="${}"></c:when>
+...
+<c:otherwise></c:otherwise> 只能有一个或0个
+</c:choose>
+循环标签
+items 设置要循环的数据与el表达式搭配用
+var  别名
+varStatus 属性 index  count last first
+begin 从哪个索引开始取  默认值是0
+end  取到哪个索引处  默认值是长度-1
+step 步长（循环变量的变化） 默认值是1
+    <c:forEach items="${list}" var="str" varStatus="status">
+        <p>
+            ${status.index+1}--${str}
+        </p>
+        <c:if test="${status.last}">
+            结束循环
+        </c:if>
+
+    </c:forEach>
+练习：
+1、使用set标签往request存一个字符串
+使用out标签获取，如果没获取到打印出一个默认值
+2、使用if标签判断是否取到值，如果取到打印，没取到提示没有
+3、使用choose when otherwise实现分支结构，
+显示分数是优秀 良好 中等 及格 不及格
+4、使用foreach标签循环一个List集合
+usersList.jsp
+
+三 实现对house表添加数据
+Servlet（HouseTpe selectAll 存作用范围 跳转）--houseInsert.jsp（显示表单）--
+Servlet（1 2 insert 3）--成功页面或列表页
+
+四 实现house表数据的列表显示
+Servlet（dao selectAll 存作用范围 跳转）--houses.jsp
+
+作业：
+1 自己研究 c:url  fmt:formatDate
+2 house housetype表
+实现house的添加功能和列表显示功能
+ 扩展：修改

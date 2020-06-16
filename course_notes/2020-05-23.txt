@@ -1,0 +1,97 @@
+1、session的常用方法
+a 存值  session.setAttribute("userAge",22);
+ 参数1 字符串类型 参数名   
+ 参数2 Object类型  存的值 --支持中文
+  如果参数名重复了，值会覆盖
+b 取值 String userName=(String)session.getAttribute("userName");
+ 根据参数名取值
+ 注意：取值后要根据存值时的类型做强制类型转换
+c 移除值 session.removeAttribute("userName");
+ 根据参数名移除
+d session失效（卸载session）session.invalidate();
+  session里存的东西都失效了
+e 获取sessionId
+   getId()  获取到服务器分配的sessionId
+   如果sessionId值一样，就说明是同一个会话（session）
+   sessionId是由服务器随机分配的一个字符串，以临时cookie的方式存储到客户端的浏览器中，名为JSESSIONID
+f 设置session的非活动有效时间  参数是int类型  秒为单位
+ session.setMaxInactiveInterval(20);
+ 参数为-1时，session永不失效
+
+2、HttpSession对象的生命周期
+ 当用户向服务器请求Servlet或Jsp时，由服务器创建出一个HttpSession对象，session有效
+ 当关闭浏览器、session.invalidate（）手动卸载session、满足session的非活动时间时（超时） session失效了
+
+3、session的应用--存储用户的数据
+1、存储用户的信息
+  用户登陆成功将用户信息存储到session对象中，其他的Servlet中或jsp中获取到用户的信息
+2、安全退出
+  session.invalidate（）手动卸载session
+
+4、设置session失效时间的三种方式
+ a、Servlet类中   单位为秒     --当前会话中有效    --不常用
+  session.setMaxInactiveInterval(20);
+ b、web.xml中   单位为分钟      --整个项目中有效
+    <session-config>
+        <session-timeout>20</session-timeout>
+    </session-config>
+ c、tomcat conf文件夹 web.xml    --整个服务器中有效
+    默认tomcat里的session失效时间是30分钟
+    单位为分钟
+      <session-config>
+        <session-timeout>20</session-timeout>
+    </session-config>
+如果三种都设置了？第一种生效 
+
+5、session与cookie的对比
+cookie的特点
+ 存储在客户端
+ 只能储存字符串类型的数据，不能直接支持储存汉字
+ 如果使用setMaxAge(正数) 将数据存到本地 在指定的时间内有效
+ 有存储长度和个数的限制
+ 相对于session而言cookie不安全
+  cookie一般用于用户的自动登录，浏览记录等
+session的特点
+  存储在服务器端
+  可以存储Object及其子孙类型的数据，可以支持储存汉字
+  session具备生命周期的...
+  session没有存储长度和个数的限制
+  相对于cookie ，session更安全
+  一般用于存储用户相关的数据
+
+练习：
+1 实现安全退出
+2 测试setMaxInactiveInterval(20);方法
+3 体会session的生命周期（打印SessionId，浏览器调试工具 network jsessionid）
+
+6、url重写
+  用户禁用浏览器cookie之后，希望session依然有效的，使用url重写
+方法：
+  response.encodeURL("路径")
+response.sendRedirect(response.encodeURL("GetSessionServlet"));
+out.print("<a href='"+response.encodeURL("add.jsp")+"'>添加</a>");
+
+7、jsp的执行过程
+ 翻译阶段  .jsp翻译成.java（Servlet）
+ 编译阶段  .java编译成.class
+ 运行阶段  运行.class文件
+第一次访问jsp页面时需要经历这三个阶段，当jsp代码不修改，再次访问这个jsp页面时，可以重用.class文件，只经历运行阶段
+所以 第一次访问jsp页面时可能会稍慢，但是再次访问变快。
+
+C:\Users\Administrator\.IntelliJIdea2018.3\system\tomcat\Tomcat_8_0_363_myFirstWebProject\work\Catalina\localhost\myFirstWebProject_war_exploded\org\apache\jsp
+
+8、jsp的脚本元素
+小脚本  写java代码
+  <%  %> 
+表达式  获取值 输出到页面或赋值给html标签属性
+  <%= %>
+
+作业：
+1、测试url重写
+2、创建一个jsp页面，设置两个变量，计算和和差，显示在当前的jsp页面中
+3、创建一个jsp页面，显示当前的日期和时间（利用SimpleDateFormat对Date的日期进行自定义格式化）
+4、创建一个jsp页面，小脚本里创建一个Users对象，设置属性值，判断如果用户名是abc，密码是111提示登录成功，否则提示失败
+
+
+
+

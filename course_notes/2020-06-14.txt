@@ -1,0 +1,54 @@
+一 过滤器
+1、执行时机
+ 用户发送请求到Servlet、jsp、html之前首先到匹配路径的过滤器，
+ 用户执行完响应给用户之前 执行过滤器。
+2、声明过滤器
+ 实现Filter接口
+ 重写doFilter方法，三个参数ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain
+    如果后面有匹配的过滤器，那就继续执行过滤器；如果没有匹配的过滤器 执行对应的Servlet
+        FilterChain对象.doFilter(servletRequest,servletResponse);
+ web.xml中配置过滤器
+    一般会给过滤器配置通配的路径
+3、多个过滤器
+过滤器1--过滤器2--Servlet--过滤器2--过滤器1
+4、过滤器的应用
+a 设置字符集   /*
+
+b 后台访问控制  /路径/*
+  不允许没登录的用户访问后台的Servlet和页面
+注意：用户请求登陆、前台功能 不能做过滤的
+
+二 监听器
+1、作用
+ 监听application request session对象的创建 销毁 及存值 删除值 改值 的行为
+2、实现
+  实现不同的接口  重写不同的方法
+
+练习：
+1、创建2个测试的Filter 配置路径
+2、设置字符集的Filter
+3、创建实现后台访问控制的Filter
+
+三 mvc设计模式
+1、设计模式
+2、mvc
+m model 模型 service 实体类
+v view 视图  html jsp
+c controller 控制器 servlet
+
+请求--控制器--service--dao--响应
+3 好处
+ 解耦合
+
+四 分页
+
+五 javabean
+  封装良好的类
+jsp+servlet+javabean
+
+作业：
+ 实现userList.jsp   houses.jsp分页显示  
+
+web2.5  servlet等 配置 web.xml中配置
+web3.0以上  使用注解配置
+

@@ -1,0 +1,5 @@
+作业：
+1 自己研究 c:url  fmt:formatDate
+2 house housetype表
+实现house的添加功能和列表显示功能
+ 扩展：修改

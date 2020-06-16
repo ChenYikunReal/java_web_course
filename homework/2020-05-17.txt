@@ -1,0 +1,10 @@
+作业：
+1、创建一个Servlet类 获取session对象，存3个数据（int类型、String类型、自定义类型）跳转到Servlet中
+获取session中存的数据 使用out对象打印
+测试removeAttribute  invalidate方法
+测试如果name重复了？如果value重复了？如果value存中文是否支持？
+
+2、修改登陆，如果登陆成功了将用户信息存到session对象，跳转到Index里面后 显示出用户信息
+扩展：
+  安全退出
+

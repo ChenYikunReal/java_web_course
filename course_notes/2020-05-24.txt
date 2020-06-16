@@ -1,0 +1,62 @@
+1、jsp的脚本元素
+小脚本  写java代码
+  <%  %> 
+表达式  获取值 输出到页面或赋值给html标签属性
+  <%= %>
+声明  写java方法或设置全局变量
+ <%!  返回值类型 方法名(参数名 参数值)  %>
+ 调用时才能执行
+ 注意：声明中定义的变量在翻译成Servlet后，会作为Servlet的属性（成员变量）
+       小脚本中定义的变量在翻译成Servlet后，会作为service方法局部变量
+jsp注释
+  <%--   --%>
+
+2、jsp页面中可以用的注释
+ html注释   一般用于注释css样式 html标签    页面查看源码时可以看到html注释
+   <!-- html注释 -->
+ jsp注释   一般用于注释jsp页面相关的内容   页面查看源码时不可以看到jsp注释
+  <%--   --%>
+ java单行注释、多行注释：//   /*   */  一般用于注释java代码
+   小脚本和声明中可以应用
+
+3、jsp指令元素
+ <%@指令元素 属性名="值" 属性名2="值2" %>
+a page指令  每个jsp页面的第一行就是page指令 用于设置页面属性信息
+  <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.Date" %>
+常用的属性：
+  language 使用的脚本语言
+  contentType 设置内容类型和字符编码
+  import 设置导包
+  pageEncoding 设置字符编码
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.Date" %>
+
+b include指令
+c taglib指令
+
+4、jsp的作用范围
+page  仅在当前的页面中有效
+  pageContext对象--类型PageContext
+request 仅在当前的请求中有效的，如果跳转页面时采用重定向跳转会导致请求失效，产生新的请求，但是采用请求转发跳转 会沿用当前的请求，请求有效
+ 如果request存值，页面跳转时就要采用请求转发跳转
+  request对象  --  类型 HttpServletRequest
+session 在当前的会话中有效
+ 当用户向服务器请求Servlet或Jsp时，由服务器创建出一个HttpSession对象，session有效
+ 当关闭浏览器、session.invalidate（）手动卸载session、满足session的非活动时间时（超时） session失效了
+ session对象-- 类型 HttpSession
+application 在整个项目中都有效，将项目发布到服务器中，启动服务器后，application对象有效了，
+如果关闭、重启服务器，对项目进行重新发布时 application失效
+ application对象 --类型 ServletContext
+
+从小到大排列
+  page request session application
+
+5、实现显示会员列表
+a标签 点击--Servlet（dao 存request作用范围 跳转）--usersList.jsp显示出会员列表
+
+作业：
+1、实现会员列表显示功能
+2、串联功能
+登陆成功--myIndex.jsp（显示欢迎信息  安全退出  点击a标签查看会员列表  点击a标签实现添加会员）
+
+

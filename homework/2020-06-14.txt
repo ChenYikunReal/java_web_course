@@ -1,0 +1,6 @@
+作业：
+ 实现userList.jsp   houses.jsp分页显示  
+
+web2.5  servlet等 配置 web.xml中配置
+web3.0以上  使用注解配置
+

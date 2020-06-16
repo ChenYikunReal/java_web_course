@@ -1,0 +1,51 @@
+1 页面提交数据到Servlet的方式
+a、表单提交 get post
+b、超链接发送数据 get
+ <a href="路径?参数名=值&参数名2=值2">标签内容</a>
+
+servlet处理请求数据
+1、String str=request.getParameter("参数名或表单控件name")
+2、与复选框一起使用
+String[] strs=request.getParameterValues("参数名或表单控件name");
+
+练习：
+1、页面 用户名、密码、性别（单选框）、爱好（复选框）、提交按钮
+点击提交后 到Servlet 获取用户输入的数据 打印出来
+2、创建三个超链接，传递一个参数，传递二个参数，传递三个同名的参数
+Servlet中获取参数值 打印
+
+2、页面跳转的两种方式--请求转发和重定向
+重定向  借助于客户端实现的跳转，会产生新的请求，路径会变化，显示的页面内容和路径匹配
+        可以跳转到同服务器的其他项目中
+        路径  "/"前面代表端口号
+	response.sendRedirect("index.jsp");
+	response.sendRedirect("/项目名/index.jsp");
+
+请求转发 借助于服务器端实现的跳转，会沿用原来的请求，路径不会变化，路径显示的依然是servlet路径，页面内容显示的新的内容
+        只能跳转到当前项目中的其他路径下
+        路径 "/"前面代表 项目名
+RequestDispatcher dispatcher=request.getRequestDispatcher("/index.jsp");
+dispatcher.forward(request,response);
+
+
+3 PrintWriter对象  out对象
+作业：在Servlet中 将内容打印到页面上
+获取  PrintWriter out=response.getWriter();
+方法    out.println("hello你好<br/>");
+        out.print("<strong>222</strong>");
+out打印时默认的编码是iso8859-1 如果打印中文（servlet中显示中文）需要设置响应的字符编码
+response.setContentType("text/html;charset=utf-8");
+注意：一定要在获取out对象之前设置编码
+
+作业：
+1、创建一个页面，页面表单中包括用户名、密码、性别（单选框）、爱好（复选框） 提交按钮等控件
+点击提示后跳转到一个Servlet中 使用out对象在Servlet中打印出用户录入的内容
+2、创建一个登陆页面，登陆成功或失败时  在当前处理登陆的Servlet中显示成功或失败，
+如果成功显示出当前用户的个人信息
+3、修改2功能，登陆成功或失败时跳转到新的不同的Servlet中显示成功或失败 
+4、修改3功能，登录成功时请求转发跳转到index.jsp页面，失败时重定向跳转到error.jsp页面
+
+
+
+
+
